@@ -9,13 +9,19 @@ module.exports = function check (str, bracketsConfig){
     closeBracket.push(bracketsConfig[i][1]);
   }
   for (let i = 0; i < openBracket.length; i ++) {
-    if (strToArr.indexOf(openBracket[i]) !== -1) {
-      openBracketIndices.push(strToArr.indexOf(openBracket[i]));
+    let element = strToArr.indexOf(openBracket[i]);
+    while (element !== -1)
+    {
+      openBracketIndices.push(element);
+      element = strToArr.indexOf(openBracket[i], element + 1);
     }
   }
   for (let i = 0; i < closeBracket.length; i ++) {
-    if (strToArr.indexOf(closeBracket[i]) !== -1) {
-      closeBracketIndices.push(strToArr.indexOf(closeBracket[i]));
+    let element = strToArr.indexOf(closeBracket[i]);
+    while (element !== -1)
+    {
+      closeBracketIndices.push(element);
+      element = strToArr.indexOf(closeBracket[i], element + 1);
     }
   }
   if (openBracketIndices.length === closeBracketIndices.length) {
